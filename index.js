@@ -3,7 +3,7 @@ let app = express();
 const PORT = process.env.PORT || 5000; //environment variables.
 
 app.get("/", (request, response) => {
-  response.send({ hello: "there" });
+  response.send({ kyunki: "because" });
 });
 
 app.listen(PORT);
