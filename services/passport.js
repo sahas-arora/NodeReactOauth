@@ -25,27 +25,22 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       console.log("The access token is: ", accessToken);
       console.log("The refresh token is:", refreshToken);
       console.log("The profile:", profile);
 
-      User.findOne({ googleID: profile.id }) //This is an asynchronous action. This query returns a promise, which is a data structure to handle asynchronous requests.
-        .then(existingUser => {
-          if (existingUser) {
-            console.log("The user already exists.");
-            done(null, existingUser);
-          } else {
-            new User({
-              googleID: profile.id
-            })
-              .save()
-              .then(user => {
-                console.log("New user added.");
-                done(null, user);
-              }); //The .save() function saves our model instance from our express server into our MongoDB databse.
-          }
-        });
+      let existingUser = await User.findOne({ googleID: profile.id }); //This is an asynchronous action. This query returns a promise, which is a data structure to handle asynchronous requests.
+      if (existingUser) {
+        console.log("The user already exists.");
+        done(null, existingUser);
+      } else {
+        let user = await new User({
+          googleID: profile.id
+        }).save();
+        console.log("New user added.");
+        done(null, user); //The .save() function saves our model instance from our express server into our MongoDB databse.
+      }
     }
   )
 ); //Creates a new instance of the Google passport stratergy.

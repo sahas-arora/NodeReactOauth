@@ -2,7 +2,8 @@ let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
-  googleID: String
+  googleID: String,
+  credits: { type: Number, default: 0 }
 });
 
 mongoose.model("users", userSchema); //This loads the userSchema that we have defined on line 4 into mongoose.

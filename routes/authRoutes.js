@@ -9,11 +9,17 @@ module.exports = app => {
     })
   );
 
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (request, response) => {
+      response.redirect("/surveys");
+    }
+  );
 
   app.get("/api/logout", (request, response) => {
     request.logout(); //This function takes the cookie in the browser and kills it, basically logs out from the browser.
-    response.send(request.user);
+    response.redirect("/");
   });
 
   app.get("/api/current_user", (request, response) => {
