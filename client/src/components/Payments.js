@@ -8,8 +8,8 @@ class Payment extends Component {
   render() {
     return (
       <StripeCheckout
-        name="NodeReactOauth"
-        description="$5 for 5 email credits"
+        name="Survey Me This"
+        description="$5 for 5 email credits."
         amount={500}
         token={token => {
           this.props.tokenHandler(token);

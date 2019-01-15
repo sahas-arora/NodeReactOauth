@@ -3,7 +3,7 @@ import React from "react";
 let Landing = () => {
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>NodeReactOauth!</h1>
+      <h1>Survey Me This!</h1>
       Collect feedback from your users!
     </div>
   );
