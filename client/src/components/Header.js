@@ -6,7 +6,6 @@ import Payments from "./Payments";
 
 class Header extends Component {
   renderContent() {
-    console.log("The props of the header are: ", this.props);
     switch (this.props.auth) {
       case null:
         return;
@@ -21,13 +20,13 @@ class Header extends Component {
       default:
         return [
           <div>
-            <li key="1">
+            <li key="a">
               <Payments />
             </li>
-            <li key="3" style={{ margin: "0 10px" }}>
+            <li key="c" style={{ margin: "0 10px" }}>
               Credits: {this.props.auth.credits}
             </li>
-            <li key="2">
+            <li key="b">
               <a href="/api/logout">Logout</a>
             </li>
           </div>
@@ -36,7 +35,7 @@ class Header extends Component {
   }
 
   render() {
-    console.log("The props of header are: ", this.props);
+    // console.log("The props of header are: ", this.props);
     return (
       <nav>
         <div className="nav-wrapper">

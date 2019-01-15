@@ -12,7 +12,6 @@ class Payment extends Component {
         description="$5 for 5 email credits"
         amount={500}
         token={token => {
-          console.log(token);
           this.props.tokenHandler(token);
         }}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
